@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ch-pulp"
+version = "1.0.0"
+description = "Cogent PULP base station logger"
+readme = "CHANGES.txt"
+requires-python = ">=3.11"
+authors = [
+    { name = "Ross Wilkins" },
+    { name = "James Brusey" }
+]
+dependencies = [
+    "paho-mqtt",
+    "tinyos3"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.setuptools]
+packages = ["pulp", "pulp.base", "pulp.sip", "pulp.node"]

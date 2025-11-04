@@ -1,5 +1,6 @@
 #+title: Cogent-House
 
+This is the MQTT server part. Also see cogent-house-web
 
 * Install instructions
 
@@ -7,17 +8,19 @@
 
 ={sh} git submodule update --init --recursive=
 
-*** Create and activate a virtual environment (using python3.13 if available)
+** Create and activate a virtual environment (using python3.11 if available)
 
-={sh} python3.13 -m venv venv source venv/bin/activate=
-
-*** Install dependencies
 #+BEGIN_SRC sh
-pip install -e tinyos3
-pip install -e .
+uv venv --python 3.11 .venv
+#+END_SRC
+
+** Install dependencies
+#+BEGIN_SRC sh
+uv pip install -e ./tinyos3
+uv pip install -e .
 #+END_SRC
 
 
-*** Run tests
-={sh} PYTHONPATH=$(pwd) pytest -q=
+** Run tests
+={sh} uv run pytest -q=
 

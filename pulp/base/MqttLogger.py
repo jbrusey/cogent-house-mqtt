@@ -71,10 +71,14 @@ TYPES = {
 }
 
 
-def on_connect(client, userdata, flags, rc):
+def on_connect(client, userdata, flags, reason_code, properties=None):
     """The callback for when the client receives a CONNACK response
     from the server."""
-    LOGGER.debug(f"Connected with result code {rc}")
+    if hasattr(reason_code, "value"):
+        result_code = reason_code.value
+    else:
+        result_code = reason_code
+    LOGGER.debug(f"Connected with result code {result_code}")
 
 
 class MqttLogger(object):
@@ -104,7 +108,13 @@ class MqttLogger(object):
             self.location = None
 
         self.topic = topic
-        self.client = mqtt.Client()
+        callback_api_version = getattr(mqtt, "CallbackAPIVersion", None)
+        if callback_api_version is not None:
+            self.client = mqtt.Client(
+                callback_api_version=callback_api_version.VERSION2
+            )
+        else:
+            self.client = mqtt.Client()
         self.client.on_connect = on_connect
         if username:
             self.client.username_pw_set(username, password=password)

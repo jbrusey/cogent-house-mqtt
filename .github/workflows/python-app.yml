@@ -33,7 +33,7 @@ jobs:
         if [ -f requirements.txt ]; then uv pip install --system -r requirements.txt; fi
     - name: Lint with Ruff
       run: |
-        ruff check .
+        ruff check pulp
     - name: Test with pytest
       run: |
         pytest

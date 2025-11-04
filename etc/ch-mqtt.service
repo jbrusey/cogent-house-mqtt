@@ -9,12 +9,18 @@ Description=CogentHouse MqttLogger
 After=network.target ch-sf.service
 
 [Service]
-ExecStart=/usr/local/sbin/ch-mqtt.sh
-WorkingDirectory=/home/chuser
-StandardOutput=inherit
-StandardError=inherit
-Restart=always
+Type=simple
 User=chuser
+WorkingDirectory=/home/chuser
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/cogent-house-mqtt/.venv/bin/python -m pulp.base.MqttLogger \
+			   --log-level=info\
+			   --host=pihole.local\
+			   --port=1883\
+			   --topic=silicon\
+			   --location-file=/home/james/rooms.csv\
+			   --log-file=/tmp/ch-mqtt2.log
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

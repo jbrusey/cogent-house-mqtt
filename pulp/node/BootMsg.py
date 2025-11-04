@@ -22,10 +22,9 @@ class BootMsg(tinyos3.message.Message.Message):
         self.amTypeSet(AM_TYPE)
 
     # Get AM_TYPE
+    @classmethod
     def get_amType(cls):
         return AM_TYPE
-
-    get_amType = classmethod(get_amType)
 
     #
     # Return a String representation of this message. Includes the
@@ -35,18 +34,18 @@ class BootMsg(tinyos3.message.Message.Message):
         s = "Message <BootMsg> \n"
         try:
             s += "  [special=0x%x]\n" % (self.get_special())
-        except:
+        except Exception:
             pass
         try:
             s += "  [clustered=0x%x]\n" % (self.get_clustered())
-        except:
+        except Exception:
             pass
         try:
             s += "  [version="
             for i in range(0, 14):
                 s += "0x%x " % (self.getElement_version(i) & 0xFF)
             s += "]\n"
-        except:
+        except Exception:
             pass
         return s
 
@@ -259,11 +258,11 @@ class BootMsg(tinyos3.message.Message.Message):
     def numDimensions_version(self):
         return 1
 
-    #
-    # Return the number of elements in the array 'version'
-    #
-    def numElements_version():
-        return 14
+    # #
+    # # Return the number of elements in the array 'version'
+    # #
+    # def numElements_version():
+    #     return 14
 
     #
     # Return the number of elements in the array 'version'
@@ -283,10 +282,10 @@ class BootMsg(tinyos3.message.Message.Message):
     # Fill in the array 'version' with a String
     #
     def setString_version(self, s):
-        l = len(s)
-        for i in range(0, l):
+        len_s = len(s)
+        for i in range(0, len_s):
             self.setElement_version(i, ord(s[i]))
-        self.setElement_version(l, 0)  # null terminate
+        self.setElement_version(len_s, 0)  # null terminate
 
     #
     # Read the array 'version' as a String

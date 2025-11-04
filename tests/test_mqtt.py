@@ -4,12 +4,10 @@ Test code for feeding BaseLogger with some packets.
 J. Brusey, May 2011
 """
 
-import logging
-import re
 from queue import Queue
-from unittest.mock import MagicMock, patch, mock_open
+from unittest.mock import patch, mock_open
 
-from pulp.base.MqttLogger import MqttLogger, mqtt
+from pulp.base.MqttLogger import MqttLogger
 
 # sys.path.append(os.environ["TOSROOT"] + "/tools/tinyos/python/")
 # sys.path.append("../..")

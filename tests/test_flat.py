@@ -5,7 +5,6 @@ J. Brusey, May 2011
 """
 
 import logging
-import re
 from queue import Queue
 from unittest.mock import MagicMock, mock_open, patch
 

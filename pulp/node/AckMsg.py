@@ -22,10 +22,9 @@ class AckMsg(tinyos3.message.Message.Message):
         self.amTypeSet(AM_TYPE)
 
     # Get AM_TYPE
+    @classmethod
     def get_amType(cls):
         return AM_TYPE
-
-    get_amType = classmethod(get_amType)
 
     #
     # Return a String representation of this message. Includes the
@@ -35,15 +34,15 @@ class AckMsg(tinyos3.message.Message.Message):
         s = "Message <AckMsg> \n"
         try:
             s += "  [node_id=0x%x]\n" % (self.get_node_id())
-        except:
+        except Exception:
             pass
         try:
             s += "  [seq=0x%x]\n" % (self.get_seq())
-        except:
+        except Exception:
             pass
         try:
             s += "  [crc=0x%x]\n" % (self.get_crc())
-        except:
+        except Exception:
             pass
         return s
 

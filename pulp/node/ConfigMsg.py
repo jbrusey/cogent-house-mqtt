@@ -22,10 +22,9 @@ class ConfigMsg(tinyos3.message.Message.Message):
         self.amTypeSet(AM_TYPE)
 
     # Get AM_TYPE
+    @classmethod
     def get_amType(cls):
         return AM_TYPE
-
-    get_amType = classmethod(get_amType)
 
     #
     # Return a String representation of this message. Includes the
@@ -35,29 +34,29 @@ class ConfigMsg(tinyos3.message.Message.Message):
         s = "Message <ConfigMsg> \n"
         try:
             s += "  [typeCount=0x%x]\n" % (self.get_typeCount())
-        except:
+        except Exception:
             pass
         try:
             s += "  [byType.samplePeriod="
             for i in range(0, 16):
                 s += "0x%x " % (self.getElement_byType_samplePeriod(i) & 0xFFFFFFFF)
             s += "]\n"
-        except:
+        except Exception:
             pass
         try:
             s += "  [byType.blink="
             for i in range(0, 16):
                 s += "0x%x " % (self.getElement_byType_blink(i) & 0xFF)
             s += "]\n"
-        except:
+        except Exception:
             pass
         try:
             pass
-        except:
+        except Exception:
             pass
         try:
             s += "  [special=0x%x]\n" % (self.get_special())
-        except:
+        except Exception:
             pass
         return s
 
@@ -215,11 +214,11 @@ class ConfigMsg(tinyos3.message.Message.Message):
     def numDimensions_byType_samplePeriod(self):
         return 1
 
-    #
-    # Return the number of elements in the array 'byType.samplePeriod'
-    #
-    def numElements_byType_samplePeriod():
-        return 16
+    # #
+    # # Return the number of elements in the array 'byType.samplePeriod'
+    # #
+    # def numElements_byType_samplePeriod():
+    #     return 16
 
     #
     # Return the number of elements in the array 'byType.samplePeriod'
@@ -332,11 +331,11 @@ class ConfigMsg(tinyos3.message.Message.Message):
     def numDimensions_byType_blink(self):
         return 1
 
-    #
-    # Return the number of elements in the array 'byType.blink'
-    #
-    def numElements_byType_blink():
-        return 16
+    # #
+    # # Return the number of elements in the array 'byType.blink'
+    # #
+    # def numElements_byType_blink():
+    #     return 16
 
     #
     # Return the number of elements in the array 'byType.blink'
@@ -356,10 +355,10 @@ class ConfigMsg(tinyos3.message.Message.Message):
     # Fill in the array 'byType.blink' with a String
     #
     def setString_byType_blink(self, s):
-        l = len(s)
-        for i in range(0, l):
+        len_s = len(s)
+        for i in range(0, len_s):
             self.setElement_byType_blink(i, ord(s[i]))
-        self.setElement_byType_blink(l, 0)  # null terminate
+        self.setElement_byType_blink(len_s, 0)  # null terminate
 
     #
     # Read the array 'byType.blink' as a String

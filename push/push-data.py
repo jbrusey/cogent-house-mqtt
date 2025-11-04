@@ -8,7 +8,6 @@ import zipfile
 import argparse
 import time
 import os
-import zlib
 
 HOST_NAME = os.uname()[1]
 

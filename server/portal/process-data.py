@@ -5,7 +5,6 @@ import glob
 import zipfile
 import argparse
 import os
-import zlib
 import json
 from datetime import datetime
 def ensure_dir(f):

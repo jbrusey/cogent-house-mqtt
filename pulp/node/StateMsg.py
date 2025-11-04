@@ -22,10 +22,9 @@ class StateMsg(tinyos3.message.Message.Message):
         self.amTypeSet(AM_TYPE)
 
     # Get AM_TYPE
+    @classmethod
     def get_amType(cls):
         return AM_TYPE
-
-    get_amType = classmethod(get_amType)
 
     #
     # Return a String representation of this message. Includes the
@@ -35,37 +34,37 @@ class StateMsg(tinyos3.message.Message.Message):
         s = "Message <StateMsg> \n"
         try:
             s += "  [ctp_parent_id=0x%x]\n" % (self.get_ctp_parent_id())
-        except:
+        except Exception:
             pass
         try:
             s += "  [timestamp=0x%x]\n" % (self.get_timestamp())
-        except:
+        except Exception:
             pass
         try:
             s += "  [special=0x%x]\n" % (self.get_special())
-        except:
+        except Exception:
             pass
         try:
             s += "  [seq=0x%x]\n" % (self.get_seq())
-        except:
+        except Exception:
             pass
         try:
             s += "  [rssi=0x%x]\n" % (self.get_rssi())
-        except:
+        except Exception:
             pass
         try:
             s += "  [packed_state_mask="
             for i in range(0, 6):
                 s += "0x%x " % (self.getElement_packed_state_mask(i) & 0xFF)
             s += "]\n"
-        except:
+        except Exception:
             pass
         try:
             s += "  [packed_state="
             for i in range(0, 15):
                 s += "%f " % (self.getElement_packed_state(i))
             s += "]\n"
-        except:
+        except Exception:
             pass
         return s
 
@@ -443,11 +442,11 @@ class StateMsg(tinyos3.message.Message.Message):
     def numDimensions_packed_state_mask(self):
         return 1
 
-    #
-    # Return the number of elements in the array 'packed_state_mask'
-    #
-    def numElements_packed_state_mask():
-        return 6
+    # #
+    # # Return the number of elements in the array 'packed_state_mask'
+    # #
+    # def numElements_packed_state_mask():
+    #     return 6
 
     #
     # Return the number of elements in the array 'packed_state_mask'
@@ -467,10 +466,10 @@ class StateMsg(tinyos3.message.Message.Message):
     # Fill in the array 'packed_state_mask' with a String
     #
     def setString_packed_state_mask(self, s):
-        l = len(s)
-        for i in range(0, l):
+        len_s = len(s)
+        for i in range(0, len_s):
             self.setElement_packed_state_mask(i, ord(s[i]))
-        self.setElement_packed_state_mask(l, 0)  # null terminate
+        self.setElement_packed_state_mask(len_s, 0)  # null terminate
 
     #
     # Read the array 'packed_state_mask' as a String
@@ -580,11 +579,11 @@ class StateMsg(tinyos3.message.Message.Message):
     def numDimensions_packed_state(self):
         return 1
 
-    #
-    # Return the number of elements in the array 'packed_state'
-    #
-    def numElements_packed_state():
-        return 15
+    # #
+    # # Return the number of elements in the array 'packed_state'
+    # #
+    # def numElements_packed_state():
+    #     return 15
 
     #
     # Return the number of elements in the array 'packed_state'

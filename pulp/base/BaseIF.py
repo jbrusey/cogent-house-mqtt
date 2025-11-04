@@ -3,11 +3,8 @@
 #
 # J. Brusey, May 2011
 
-import sys
-import os
-from pulp.node import StateMsg, ConfigMsg, Packets, BootMsg
+from pulp.node import StateMsg, BootMsg
 from tinyos3.message import MoteIF
-import time
 from queue import Queue, Empty
 
 
